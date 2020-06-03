@@ -1,3 +1,20 @@
 {
-    "python.pythonPath": "/home/alex/miniconda3/envs/py38/bin/python"
+    "python.pythonPath": "/home/alex/miniconda3/envs/py38/bin/python",
+    "sqltools.connections": [
+        {
+            "askForPassword": false,
+            "database": "awesome",
+            "driver": "MySQL",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "awe-some",
+            "password": "www-data",
+            "port": 3306,
+            "previewLimit": 50,
+            "server": "localhost",
+            "username": "www-data"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
 }
