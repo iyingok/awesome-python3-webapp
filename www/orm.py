@@ -13,9 +13,15 @@ import aiomysql
 logging.basicConfig(level=logging.INFO)
 
 
-def log(sql, *args):
+def log(sql, args):
+    # print("%s"% sql )
     a = sql.replace('?', '%s')
-    logging.info('SQL: %s' % a % args)
+    # print("%s"% args )
+    # print("%s"% a )
+    if args is None:
+        logging.info('SQL: %s' % a )
+    else:
+        logging.info('SQL: %s' % a % tuple(args))
 
 
 async def create_pool(**kw):
@@ -36,7 +42,7 @@ async def create_pool(**kw):
 
 
 async def select(sql, args, size=None):
-    log(sql, *args)
+    log(sql, args)
     global __pool
     async with __pool.get() as conn:
         async with conn.cursor(aiomysql.DictCursor) as cur:
@@ -50,7 +56,7 @@ async def select(sql, args, size=None):
 
 
 async def execute(sql, args, autocommit=True):
-    log(sql, *args)
+    log(sql, args)
 
     async with __pool.get() as conn:
         if not autocommit:
